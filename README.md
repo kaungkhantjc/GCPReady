@@ -1,5 +1,7 @@
 # GCPReady
-GCP script generator
+
+GCP script generator<br>
+https://kaungkhantjc.github.io/GCPReady
 
 Enter project ID & project number. Then press `Generate` button. Voila!
 
