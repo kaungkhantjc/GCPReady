@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+          integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">
+    <title>Create instance</title>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
+</head>
+
+<body class="user-select-none">
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            <!--suppress CheckImageSize -->
+            <img src="./favicon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+            <span class="ps-3 fw-semibold">Create instance</span>
+            <a target="_blank" class="float-end btn btn-outline-primary" href="https://t.me/kaungkhantx">Contact
+                Developer</a>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid p-lg-4 p-sm-4 p-md-4 p-4">
+    <form id="gcpReadyForm" class="row g-3">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="edtProjectId" class="form-label">Project ID</label>
+            <input required type="text" class="form-control" id="edtProjectId"
+                   placeholder="qwiklabs-gcp-4fbfecac8667e457">
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="edtProjectNumber" class="form-label">Project number</label>
+            <input required type="number" minlength="12" maxlength="12" class="form-control" id="edtProjectNumber"
+                   placeholder="534422509770">
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="edtFirewallName" class="form-label">Firewall name</label>
+            <input value="abc" type="text" class="form-control" id="edtFirewallName"
+                   placeholder="abc">
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="edtInstanceName" class="form-label">Instance name</label>
+            <input value="instance-1" type="text" class="form-control" id="edtInstanceName"
+                   placeholder="instance-1">
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="regionZone" class="form-label">Region zone</label>
+            <select id="regionZone" class="form-select" aria-label="Region zone">
+                <option selected value="asia-east1-b">Taiwan (asia-east1-b)</option>
+                <option value="asia-east1-a">Taiwan (asia-east1-a)</option>
+                <option value="asia-east1-c">Taiwan (asia-east1-c)</option>
+                <option value="asia-southeast1-b">Singapore (asia-southeast1-b)</option>
+                <option value="asia-southeast1-a">Singapore (asia-southeast1-a)</option>
+                <option value="asia-southeast1-c">Singapore (asia-southeast1-c)</option>
+                <option value="us-central1-c">US Central (us-central1-c)</option>
+                <option value="us-central1-a">US Central (us-central1-a)</option>
+                <option value="us-central1-f">US Central (us-central1-f)</option>
+                <option value="us-central1-b">US Central (us-central1-b)</option>
+                <option value="us-west1-b">Oregon (us-west1-b)</option>
+                <option value="us-west1-c">Oregon (us-west1-c)</option>
+                <option value="us-west1-a">Oregon (us-west1-a)</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <label for="machineType" class="form-label">Machine type</label>
+            <select id="machineType" class="form-select" aria-label="Machine type">
+                <optgroup label="Shared-core">
+                    <option selected value="e2-medium">e2-medium (2 vCPU, 4 GB Memory)</option>
+                    <option value="e2-micro">e2-micro (2 vCPU, 1 GB Memory)</option>
+                    <option value="e2-small">e2-small (2 vCPU, 2 GB Memory)</option>
+                </optgroup>
+                <optgroup label="Standard">
+                    <option value="e2-standard-2">e2-standard-2 (2 vCPU, 8 GB Memory)</option>
+                    <option value="e2-standard-4">e2-standard-4 (4 vCPU, 16 GB Memory)</option>
+                    <option value="e2-standard-8">e2-standard-8 (8 vCPU, 32 GB Memory)</option>
+                    <option value="e2-standard-16">e2-standard-16 (16 vCPU, 64 GB Memory)</option>
+                    <option value="e2-standard-32">e2-standard-32 (32 vCPU, 128 GB Memory)</option>
+                </optgroup>
+                <optgroup label="High memory">
+                    <option value="e2-highmem-2">e2-highmem-2 (2 vCPU, 16 GB Memory)</option>
+                    <option value="e2-highmem-4">e2-highmem-4 (4 vCPU, 32 GB Memory)</option>
+                    <option value="e2-highmem-8">e2-highmem-8 (8 vCPU, 64 GB Memory)</option>
+                    <option value="e2-highmem-16">e2-highmem-16 (16 vCPU, 128 GB Memory)</option>
+                </optgroup>
+                <optgroup label="High CPU">
+                    <option value="e2-highcpu-2">e2-highcpu-2 (2 vCPU, 2 GB Memory)</option>
+                    <option value="e2-highcpu-4">e2-highcpu-4 (4 vCPU, 4 GB Memory)</option>
+                    <option value="e2-highcpu-8">e2-highcpu-8 (8 vCPU, 8 GB Memory)</option>
+                    <option value="e2-highcpu-16">e2-highcpu-16 (16 vCPU, 16 GB Memory)</option>
+                    <option value="e2-highcpu-32">e2-highcpu-32 (32 vCPU, 32 GB Memory)</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="d-block mt-4">
+            <button type="button" onclick="checkForm()" class="btn btn-primary">Generate</button>
+        </div>
+    </form>
+
+    <div id="result" class="d-none">
+        <div class="mt-4">
+            <label for="firewallCode" class="form-label">Firewall</label>
+            <textarea spellcheck="false" id="firewallCode" class="form-control" rows="1"></textarea>
+        </div>
+        <div class="mt-3">
+            <button onclick="navigator.clipboard.writeText(document.getElementById('firewallCode').value)"
+                    class="btn btn-primary">Copy
+            </button>
+        </div>
+
+        <div class="mt-3">
+            <label for="instanceCode" class="form-label">VM</label>
+            <textarea spellcheck="false" id="instanceCode" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="mt-3">
+            <button onclick="navigator.clipboard.writeText(document.getElementById('instanceCode').value)"
+                    class="btn btn-primary">Copy
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    let gcpReadyForm = document.getElementById("gcpReadyForm");
+
+    function generateFirewallCodes(projectId, firewallName) {
+        return "gcloud compute --project={projectId} firewall-rules create {firewallName} --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=all --source-ranges=0.0.0.0/0"
+            .formatUnicorn({
+                projectId: projectId,
+                firewallName: firewallName
+            })
+    }
+
+    function generateInstanceCodes(projectId, projectNumber, firewallName, instanceName, regionZone, machineType) {
+        return "gcloud compute instances create {instanceName} --project={projectId} --zone={regionZone} --machine-type={machineType} --network-interface=network-tier=PREMIUM,subnet=default --metadata=startup-script=apt\\ update$'\\n'$'\\n'bash\\ \\<\\(curl\\ -Ls\\ https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh\\),enable-oslogin=true --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account={projectNumber}-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --tags={firewallName},http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name={instanceName},image=projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20220824,mode=rw,size=100,type=projects/{projectId}/zones/{regionZone}/diskTypes/pd-standard --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
+            .formatUnicorn({
+                instanceName: instanceName,
+                projectId: projectId,
+                regionZone: regionZone,
+                machineType: machineType,
+                projectNumber: projectNumber,
+                firewallName: firewallName
+            })
+    }
+
+    function checkForm() {
+        gcpReadyForm.reportValidity();
+        if (gcpReadyForm.checkValidity()) {
+
+            let projectId = document.getElementById("edtProjectId").value;
+            let projectNumber = document.getElementById("edtProjectNumber").value;
+            let firewallName = document.getElementById("edtFirewallName").value;
+            let instanceName = document.getElementById("edtInstanceName").value;
+            let regionZone = document.getElementById("regionZone").value;
+            let machineType = document.getElementById("machineType").value;
+
+            document.getElementById("result").className = "d-block";
+            document.getElementById("firewallCode").innerText = generateFirewallCodes(projectId, firewallName);
+            document.getElementById("instanceCode").innerText = generateInstanceCodes(projectId, projectNumber, firewallName, instanceName, regionZone, machineType);
+        }
+    }
+
+
+    String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
+        function () {
+            "use strict";
+            let str = this.toString();
+            if (arguments.length) {
+                const t = typeof arguments[0];
+                let key;
+                const args = ("string" === t || "number" === t) ?
+                    Array.prototype.slice.call(arguments)
+                    : arguments[0];
+
+                for (key in args) {
+                    str = str.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
+                }
+            }
+
+            return str;
+        };
+</script>
+</html>
