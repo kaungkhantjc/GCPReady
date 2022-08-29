@@ -77,7 +77,7 @@
         </div>
 
         <div id="firewall" class="alert border clearfix mt-3 d-none">
-            <button onclick="copyText('firewallCode', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
@@ -89,13 +89,12 @@
     <div class="d-block">
         <div class="mt-4">
             <div class="alert border clearfix">
-                <button onclick="copyText('code1', this)"
+                <button onclick="copyFromCode(this)"
                         class="btn btn-outline-primary float-end ms-2"
                         data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                     <i class="bi bi-clipboard"></i>
                 </button>
-                <code id="code1" class="text-dark pe-3">gcloud auth list<br>gcloud config list project<br>
-                </code>
+                <code class="text-dark pe-3">gcloud auth list<br>gcloud config list project</code>
             </div>
         </div>
 
@@ -111,12 +110,12 @@
             <tr>
                 <td>
                     <div class="clearfix m-2">
-                        <button onclick="copyText('code2', this)"
+                        <button onclick="copyFromCode(this)"
                                 class="btn btn-outline-primary float-end ms-2"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                             <i class="bi bi-clipboard"></i>
                         </button>
-                        <code id="code2" class="text-dark pe-3">gcelab</code>
+                        <code class="text-dark pe-3">gcelab</code>
                     </div>
                 </td>
                 <td class="align-middle">✅</td>
@@ -128,13 +127,13 @@
         </div>
 
         <div class="alert border clearfix">
-            <button onclick="copyText('code3', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code3" class="text-dark pe-3">sudo apt-get update<br>sudo apt-get install -y nginx<br>ps auwx |
-                grep nginx<br></code>
+            <code class="text-dark pe-3">sudo apt-get update<br>sudo apt-get install -y nginx<br>ps auwx |
+                grep nginx</code>
         </div>
 
         <div class="mt-3 alert alert-primary">
@@ -142,31 +141,36 @@
         </div>
 
         <div class="alert border clearfix">
-            <button onclick="copyText('code4', this)"
+            <button onclick="copyTask3Code(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code4" class="text-dark pe-3">gcloud compute instances create gcelab2 --machine-type e2-medium
-                --zone us-west1-c</code>
+            <code class="text-dark pe-3">gcloud compute instances create <span style="cursor: pointer"
+                                                                               onclick=" navigator.clipboard.writeText(this.innerText)">gcelab2</span>
+                --machine-type e2-medium --zone
+                <label for="edtZone"></label>
+                <input id="edtZone" style="width: 120px; display: inline" class="mt-2 form-control input-group-sm"
+                       placeholder="us-west4-a">
+            </code>
         </div>
 
         <div class="alert border clearfix">
-            <button onclick="copyText('code5', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code5" class="text-dark pe-3">gcloud compute instances create --help</code>
+            <code class="text-dark pe-3">gcloud compute instances create --help</code>
         </div>
 
         <div class="alert border clearfix">
-            <button onclick="copyText('code6', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code6" class="text-dark pe-3">gcloud compute ssh gcelab2 --zone us-west1-c</code>
+            <code id="task3SshCode" class="text-dark pe-3">gcloud compute ssh gcelab2 --zone {ZONE}</code>
         </div>
 
         <div class="mt-3 alert alert-primary">
@@ -175,33 +179,32 @@
         </div>
 
         <div class="alert border clearfix mt-3">
-            <button onclick="copyText('code7', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code7" class="text-dark pe-3">sudo su</code>
+            <code class="text-dark pe-3">sudo su</code>
         </div>
 
         <div class="alert border clearfix mt-3">
-            <button onclick="copyText('code8', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code8" class="text-dark pe-3">apt update</code>
+            <code class="text-dark pe-3">apt update</code>
         </div>
 
         <div class="alert border clearfix mt-3">
-            <button onclick="copyText('code9', this)"
+            <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="code9" class="text-dark pe-3">bash <(curl -Ls
+            <code class="text-dark pe-3">bash <(curl -Ls
                 https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)</code>
         </div>
-
     </div>
 </div>
 
@@ -218,9 +221,11 @@
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-    const edtProjectId = document.getElementById("edtProjectId");
-    const edtFirewallName = document.getElementById("edtFirewallName");
-    const firewall = document.getElementById("firewall");
+    let edtProjectId = document.getElementById("edtProjectId");
+    let edtFirewallName = document.getElementById("edtFirewallName");
+    let edtZone = document.getElementById('edtZone');
+    let task3SshCode = document.getElementById('task3SshCode');
+    let firewall = document.getElementById("firewall");
 
     const generateCode = function () {
         let projectId = edtProjectId.value;
@@ -236,6 +241,9 @@
 
     edtProjectId.addEventListener('input', generateCode);
     edtFirewallName.addEventListener('input', generateCode);
+    edtZone.addEventListener('input', function (e) {
+        task3SshCode.innerText = "gcloud compute ssh gcelab2 --zone {ZONE}".formatUnicorn({ZONE: e.target.value})
+    })
 
     function generateRandomAlphabet(min, max) {
         let times = Math.floor(Math.random() * (max - min)) + min;
@@ -270,23 +278,33 @@
             })
     }
 
-    function copyText(codeId, element) {
-        navigator.clipboard.writeText(document.getElementById(codeId).innerText)
+    function copyFromStr(str, button) {
+        navigator.clipboard.writeText(str.trim())
 
-        let tooltip = bootstrap.Tooltip.getInstance(element);
+        let tooltip = bootstrap.Tooltip.getInstance(button);
 
-        element.title = "Copied";
+        button.title = "Copied";
         tooltip.dispose();
-        tooltip = new bootstrap.Tooltip(element);
+        tooltip = new bootstrap.Tooltip(button);
         tooltip.show()
 
         setTimeout(function () {
-            element.title = "Copy";
+            button.title = "Copy";
             tooltip.dispose();
-            tooltip = new bootstrap.Tooltip(element);
+            tooltip = new bootstrap.Tooltip(button);
             tooltip.show()
         }, 2000)
 
+    }
+
+    function copyFromCode(button) {
+        copyFromStr(button.parentElement.querySelector("code").innerText, button);
+    }
+
+    function copyTask3Code(button) {
+        let code = button.parentElement.querySelector("code").innerText.trim();
+        let zone = button.parentElement.querySelector("input").value;
+        copyFromStr(`${code} ${zone}`, button)
     }
 
     String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
