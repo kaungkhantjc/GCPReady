@@ -137,7 +137,7 @@ install_x-ui() {
   systemctl enable x-ui
   systemctl start x-ui
   echo -e "${green}x-ui v${last_version}${plain} The installation is completed and the panel is activated."
-
+  echo ""
   external_ip=$(curl -Ls "https://checkip.amazonaws.com")
   echo -e "Panel URL: ${green}http://${external_ip}:54321${plain}"
   echo ""
