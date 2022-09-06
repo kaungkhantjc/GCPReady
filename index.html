@@ -55,6 +55,35 @@
         </div>
     </div>
 
+    <table class="mt-3 table table-bordered text-center">
+        <tr class="bg-light">
+            <th>Instance name</th>
+            <th>Allow HTTP traffic</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="clearfix m-2">
+                    <button onclick="copyFromCode(this)"
+                            class="btn btn-outline-primary float-end ms-2"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                    <code class="text-dark pe-3">gcelab</code>
+                </div>
+            </td>
+            <td class="align-middle">✅</td>
+        </tr>
+    </table>
+
+    <div class="alert border clearfix mt-3">
+        <button onclick="copyFromCode(this)"
+                class="btn btn-outline-primary float-end ms-2"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
+            <i class="bi bi-clipboard"></i>
+        </button>
+        <code class="text-dark pe-3">sudo apt-get update<br>sudo apt-get install -y nginx</code>
+    </div>
+
     <div class="mt-3">
         <div class="row g-2">
             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -84,17 +113,34 @@
             </div>
         </div>
 
-        <div id="firewall" class="alert border clearfix mt-3 d-block">
+        <div id="instanceContainer" class="alert border clearfix mt-3">
             <button onclick="copyFromCode(this)"
                     class="btn btn-outline-primary float-end ms-2"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                 <i class="bi bi-clipboard"></i>
             </button>
-            <code id="firewallCode" class="text-dark pe-3"></code>
+            <code id="instanceCode" class="text-dark pe-3"></code>
+        </div>
+
+        <div id="sshContainer" class="alert border clearfix mt-3">
+            <button onclick="copyFromCode(this)"
+                    class="btn btn-outline-primary float-end ms-2"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
+                <i class="bi bi-clipboard"></i>
+            </button>
+            <code id="sshCode" class="text-dark pe-3"></code>
         </div>
     </div>
 
     <div class="d-block">
+        <div class="alert border clearfix mt-3">
+            <button onclick="copyFromCode(this)"
+                    class="btn btn-outline-primary float-end ms-2"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
+                <i class="bi bi-clipboard"></i>
+            </button>
+            <code class="text-dark pe-3">sudo su</code>
+        </div>
 
         <div class="alert border clearfix mt-3">
             <button onclick="copyFromCode(this)"
@@ -133,7 +179,8 @@
     let edtProjectId = document.getElementById("edtProjectId");
     let edtFirewallName = document.getElementById("edtFirewallName");
     let edtZone = document.getElementById('edtZone');
-    let firewall = document.getElementById("firewall");
+    let instanceContainer = document.getElementById("instanceContainer");
+    let sshContainer = document.getElementById("sshContainer");
 
     const generateCode = function () {
         let projectId = edtProjectId.value.trim();
@@ -141,10 +188,13 @@
         let firewallName = edtFirewallName.value.trim();
 
         if (projectId === '' || zone === '' || firewallName === '') {
-            firewall.classList.add('d-none');
+            instanceContainer.classList.add('d-none');
+            sshContainer.classList.add('d-none');
         } else {
-            firewall.classList.remove('d-none');
-            document.getElementById('firewallCode').innerText = generateFirewallCodes(projectId, zone, firewallName);
+            instanceContainer.classList.remove('d-none');
+            sshContainer.classList.remove('d-none');
+            document.getElementById('instanceCode').innerText = generateInstanceCode(projectId, zone, firewallName);
+            document.getElementById('sshCode').innerText = generateSshCode(projectId, zone);
         }
     }
 
@@ -177,12 +227,20 @@
 
     generateRandomFirewallName();
 
-    function generateFirewallCodes(projectId, zone, firewallName) {
-        return "gcloud compute instances create gcelab --project={projectId} --machine-type e2-medium --zone={zone} --metadata=startup-script=apt-get\\ update$'\\n'$'\\n'apt-get\\ install\\ -y\\ nginx,enable-oslogin=true --tags=http-server & gcloud compute instances create gcelab2 --machine-type e2-medium --zone {zone} & gcloud compute --project={projectId} firewall-rules create {firewallName} --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=all --source-ranges=0.0.0.0/0 & gcloud compute ssh --zone={zone} --project={projectId} root@gcelab2 & bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/install.sh)\n\n"
+    function generateInstanceCode(projectId, zone, firewallName) {
+        return "gcloud compute instances create gcelab2 --machine-type e2-medium --zone {zone} & gcloud compute --project={projectId} firewall-rules create {firewallName} --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=all --source-ranges=0.0.0.0/0"
             .formatUnicorn({
                 projectId: projectId,
                 zone: zone,
                 firewallName: firewallName
+            })
+    }
+
+    function generateSshCode(projectId, zone) {
+        return "gcloud compute ssh --zone \"{zone}\" \"gcelab2\"  --project \"{projectId}\""
+            .formatUnicorn({
+                projectId: projectId,
+                zone: zone
             })
     }
 
