@@ -100,7 +100,7 @@ install_x-ui() {
             exit 1
         fi
         echo -e "Detected x-ui latest version: ${last_version}，starting installation.."
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/vaxilu/x-ui/releases/download/"${last_version}"/x-ui-linux-${arch}.tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Download x-ui failed, please make sure your server can download the Github file. ${plain}"
             exit 1
@@ -109,7 +109,7 @@ install_x-ui() {
         last_version=$1
         url="https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
         echo -e "Start installation x-ui v$1"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz "${url}"
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Download x-ui v$1 failed, please make sure this version exists. ${plain}"
             exit 1
@@ -137,6 +137,6 @@ install_x-ui() {
     printf "Proudly simplified the script by %bKaung Khant Kyaw \uD83D\uDE0A" "$green"
 }
 
-echo -e "${green}Installing..${plain}"
+echo -e "${green}Installing Xray Panel ...${plain}"
 install_base
 install_x-ui "$1"
