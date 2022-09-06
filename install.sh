@@ -139,7 +139,7 @@ install_x-ui() {
   echo -e "${green}x-ui v${last_version}${plain} The installation is completed and the panel is activated."
 
   external_ip=$(curl -Ls "https://checkip.amazonaws.com")
-  echo "Panel URL: ${green}http://${external_ip}:54321${plain}"
+  echo -e "Panel URL: ${green}http://${external_ip}:54321${plain}"
   echo ""
   echo "------------------------------------"
   printf "  Proudly simplified the script by  \n"
