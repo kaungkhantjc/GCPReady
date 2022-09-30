@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
           integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/themes/prism.min.css" integrity="sha256-ko4j5rn874LF8dHwW29/xabhh8YBleWfvxb8nQce4Fc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/themes/prism.min.css"
+          integrity="sha256-ko4j5rn874LF8dHwW29/xabhh8YBleWfvxb8nQce4Fc=" crossorigin="anonymous">
 
     <style>
         code {
@@ -47,20 +48,33 @@
                 in</a>
         </div>
 
-        <div class="dropdown">
+        <div class="btn-group dropdown-menu-lg-end">
             <button class="btn btn-primary dropdown-toggle" type="button" id="labs" data-bs-toggle="dropdown"
                     aria-expanded="false">
                 Labs
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a target="_blank" class="dropdown-item"
-                       href="https://www.cloudskillsboost.google/focuses/21010?parent=catalog">Adding flows to scale
-                    your virtual agent</a></li>
-                <li><a target="_blank" class="dropdown-item"
-                       href="https://www.cloudskillsboost.google/focuses/21008?parent=catalog">Using Cloud Functions in
-                    DF CX</a></li>
 
-            </ul>
+            <ol class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><small class="dropdown-item-text">6hr labs</small></li>
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/21010?parent=catalog">
+                    1. Adding flows to scale your virtual agent
+                </a></li>
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/21008?parent=catalog">
+                    2. Using Cloud Functions in DF CX
+                </a></li>
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/21012?parent=catalog">
+                    3. Creating a basic chat virtual agent with DF CX
+                </a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/20774?parent=catalog">
+                    4. Kubernetes Basics v1.6 (4:30hr)
+                </a></li>
+            </ol>
+
         </div>
     </div>
 
@@ -170,7 +184,8 @@
                 data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
             <i class="bi bi-clipboard"></i>
         </button>
-        <code id="shellCode" class="language-bash pe-3" style="background-color: transparent; font-family: monospace; word-wrap: break-word"></code>
+        <code id="shellCode" class="language-bash pe-3"
+              style="background-color: transparent; font-family: monospace; word-wrap: break-word"></code>
     </div>
 </div>
 
