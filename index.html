@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>GCP Ready (No Ban)</title>
-
-    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
+    <title>GCP Ready V3</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/favicon.png"/>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
           integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/themes/prism.min.css" integrity="sha256-ko4j5rn874LF8dHwW29/xabhh8YBleWfvxb8nQce4Fc=" crossorigin="anonymous">
 
     <style>
         code {
@@ -24,56 +24,145 @@
     <div class="container-fluid">
         <a class="navbar-brand">
             <!--suppress CheckImageSize -->
-            <img src="./favicon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-            <span class="ps-3 fw-semibold">GCP Ready (No Ban)</span>
+            <img src="assets/favicon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+            <span class="ps-3 fw-semibold">GCP Ready V3</span>
+            <a target="_blank" class="float-end btn btn-outline-primary" href="https://t.me/kaungkhantx">Contact
+                Developer</a>
         </a>
-        <a target="_blank" class="float-end btn btn-outline-primary" href="https://t.me/kaungkhantx">Contact
-            Developer</a>
     </div>
 </nav>
 
-<div class="container p-lg-4 p-sm-4 p-md-4 p-4">
+<div class="container-fluid p-lg-4 p-sm-4 p-md-4 p-4">
 
     <div class="d-flex align-content-end flex-wrap gap-3">
         <div class="text-nowrap">
-            <a target="_blank" class="btn btn-primary" href="./v1/index.html">V1</a>
+            <a class="btn btn-primary" href="./v1/index.html">V1</a>
         </div>
         <div class="text-nowrap">
-            <a target="_blank" class="btn btn-primary" href="./v3/index.html">V3</a>
+            <a class="btn btn-primary" href="v2/index.html">V2</a>
         </div>
+
         <div class="text-nowrap">
             <a target="_blank" class="btn btn-primary" href="https://www.cloudskillsboost.google/users/sign_in">Sign
                 in</a>
         </div>
-        <div class="text-nowrap">
-            <a target="_blank" class="btn btn-primary"
-               href="https://www.cloudskillsboost.google/focuses/3563?parent=catalog">Lab</a>
-        </div>
-        <div class="text-nowrap">
-            <a target="_blank" class="btn btn-primary"
-               href="https://console.cloud.google.com/compute/instancesAdd">Create new instance</a>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="labs" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Labs
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/21010?parent=catalog">Adding flows to scale
+                    your virtual agent</a></li>
+                <li><a target="_blank" class="dropdown-item"
+                       href="https://www.cloudskillsboost.google/focuses/21008?parent=catalog">Using Cloud Functions in
+                    DF CX</a></li>
+
+            </ul>
         </div>
     </div>
 
-    <table class="mt-3 table table-bordered text-center">
-        <tr class="bg-light">
-            <th>Instance name</th>
-            <th>Allow HTTP traffic</th>
-        </tr>
-        <tr>
-            <td>
-                <div class="clearfix m-2">
-                    <button onclick="copyFromCode(this)"
-                            class="btn btn-outline-primary float-end ms-2"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
-                        <i class="bi bi-clipboard"></i>
-                    </button>
-                    <code class="text-dark pe-3">gcelab</code>
+    <div oninput="generateShellCode()" class="row g-3 mt-3">
+
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+            <label for="edtInstanceName" class="form-label">Instance name</label>
+            <div class="input-group">
+                <input spellcheck="false" value="instance-1" type="text" class="form-control" id="edtInstanceName"
+                       placeholder="instance-1">
+                <div class="input-group-append">
+                    <span style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                          onclick="generateRandomStr(document.getElementById('edtInstanceName'))"
+                          class="input-group-text btn btn-primary"
+                    ><i class="bi bi-shuffle"></i></span>
                 </div>
-            </td>
-            <td class="align-middle">✅</td>
-        </tr>
-    </table>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+            <label for="edtFirewallName" class="form-label">Firewall name</label>
+            <div class="input-group">
+                <input spellcheck="false" value="abc" type="text" class="form-control" id="edtFirewallName"
+                       placeholder="abc">
+                <div class="input-group-append">
+                    <span style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                          onclick="generateRandomStr(document.getElementById('edtFirewallName'))"
+                          class="input-group-text btn btn-primary"
+                    ><i class="bi bi-shuffle"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <label for="edtUsername" class="form-label">Username</label>
+            <input spellcheck="false" type="text" class="form-control" id="edtUsername"
+                   placeholder="admin" value="admin">
+        </div>
+
+        <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <label for="edtPassword" class="form-label">Password</label>
+            <input spellcheck="false" type="text" class="form-control" id="edtPassword"
+                   placeholder="admin" value="admin">
+        </div>
+
+        <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <label for="edtPort" class="form-label">Port</label>
+            <input spellcheck="false" min="1" max="65535" type="number" class="form-control" id="edtPort"
+                   placeholder="1-65535" value="1234">
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="machineType" class="form-label">Machine type</label>
+            <select id="machineType" class="form-select" aria-label="Machine type">
+                <optgroup label="Shared-core">
+                    <option selected value="e2-medium">e2-medium (2 vCPU, 4 GB Memory)</option>
+                    <option value="e2-micro">e2-micro (2 vCPU, 1 GB Memory)</option>
+                    <option value="e2-small">e2-small (2 vCPU, 2 GB Memory)</option>
+                </optgroup>
+                <optgroup label="Standard">
+                    <option value="e2-standard-2">e2-standard-2 (2 vCPU, 8 GB Memory)</option>
+                    <option value="e2-standard-4">e2-standard-4 (4 vCPU, 16 GB Memory)</option>
+                    <option value="e2-standard-8">e2-standard-8 (8 vCPU, 32 GB Memory)</option>
+                    <option value="e2-standard-16">e2-standard-16 (16 vCPU, 64 GB Memory)</option>
+                    <option value="e2-standard-32">e2-standard-32 (32 vCPU, 128 GB Memory)</option>
+                </optgroup>
+                <optgroup label="High memory">
+                    <option value="e2-highmem-2">e2-highmem-2 (2 vCPU, 16 GB Memory)</option>
+                    <option value="e2-highmem-4">e2-highmem-4 (4 vCPU, 32 GB Memory)</option>
+                    <option value="e2-highmem-8">e2-highmem-8 (8 vCPU, 64 GB Memory)</option>
+                    <option value="e2-highmem-16">e2-highmem-16 (16 vCPU, 128 GB Memory)</option>
+                </optgroup>
+                <optgroup label="High CPU">
+                    <option value="e2-highcpu-2">e2-highcpu-2 (2 vCPU, 2 GB Memory)</option>
+                    <option value="e2-highcpu-4">e2-highcpu-4 (4 vCPU, 4 GB Memory)</option>
+                    <option value="e2-highcpu-8">e2-highcpu-8 (8 vCPU, 8 GB Memory)</option>
+                    <option value="e2-highcpu-16">e2-highcpu-16 (16 vCPU, 16 GB Memory)</option>
+                    <option value="e2-highcpu-32">e2-highcpu-32 (32 vCPU, 32 GB Memory)</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+            <label for="regionZone" class="form-label">Region zone</label>
+            <select id="regionZone" class="form-select" aria-label="Region zone">
+                <option selected value="asia-east1-b">Taiwan (asia-east1-b)</option>
+                <option value="asia-east1-a">Taiwan (asia-east1-a)</option>
+                <option value="asia-east1-c">Taiwan (asia-east1-c)</option>
+                <option value="asia-southeast1-b">Singapore (asia-southeast1-b)</option>
+                <option value="asia-southeast1-a">Singapore (asia-southeast1-a)</option>
+                <option value="asia-southeast1-c">Singapore (asia-southeast1-c)</option>
+                <option value="us-central1-c">US Central (us-central1-c)</option>
+                <option value="us-central1-a">US Central (us-central1-a)</option>
+                <option value="us-central1-f">US Central (us-central1-f)</option>
+                <option value="us-central1-b">US Central (us-central1-b)</option>
+                <option value="us-west1-b">Oregon (us-west1-b)</option>
+                <option value="us-west1-c">Oregon (us-west1-c)</option>
+                <option value="us-west1-a">Oregon (us-west1-a)</option>
+            </select>
+        </div>
+
+    </div>
 
     <div class="alert border clearfix mt-3">
         <button onclick="copyFromCode(this)"
@@ -81,87 +170,12 @@
                 data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
             <i class="bi bi-clipboard"></i>
         </button>
-        <code class="text-dark pe-3">sudo apt-get update<br>sudo apt-get install -y nginx</code>
-    </div>
-
-    <div class="mt-3">
-        <div class="row g-2">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <label for="edtProjectId" class="form-label">Project ID</label>
-                <input required type="text" class="form-control" id="edtProjectId"
-                       placeholder="qwiklabs-gcp-4fbfecac8667e457">
-            </div>
-
-            <div class="col-5 col-sm-5 col-md-3 col-lg-3">
-                <label for="edtZone" class="form-label">Zone</label>
-                <input required type="text" class="form-control" id="edtZone"
-                       placeholder="us-east5-a">
-            </div>
-
-            <div class="col-5 col-sm-5 col-md-2 col-lg-2">
-                <label for="edtFirewallName" class="form-label">Firewall name</label>
-                <input value="abc" type="text" class="form-control" id="edtFirewallName"
-                       placeholder="abc">
-            </div>
-
-            <div class="col-2 col-sm-2 col-md-1 col-lg-1 d-flex gx-4">
-                <div class="align-items-center align-self-end">
-                    <button onclick="generateRandomFirewallName()" class="btn btn-primary">
-                        <i class="bi bi-shuffle"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="instanceContainer" class="alert border clearfix mt-3">
-            <button onclick="copyFromCode(this)"
-                    class="btn btn-outline-primary float-end ms-2"
-                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
-                <i class="bi bi-clipboard"></i>
-            </button>
-            <code id="instanceCode" class="text-dark pe-3"></code>
-        </div>
-
-        <div id="sshContainer" class="alert border clearfix mt-3">
-            <button onclick="copyFromCode(this)"
-                    class="btn btn-outline-primary float-end ms-2"
-                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
-                <i class="bi bi-clipboard"></i>
-            </button>
-            <code id="sshCode" class="text-dark pe-3"></code>
-        </div>
-    </div>
-
-    <div class="d-block">
-        <div class="alert border clearfix mt-3">
-            <button onclick="copyFromCode(this)"
-                    class="btn btn-outline-primary float-end ms-2"
-                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
-                <i class="bi bi-clipboard"></i>
-            </button>
-            <code class="text-dark pe-3">sudo su</code>
-        </div>
-
-        <div class="alert border clearfix mt-3">
-            <button onclick="copyFromCode(this)"
-                    class="btn btn-outline-primary float-end ms-2"
-                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
-                <i class="bi bi-clipboard"></i>
-            </button>
-            <code class="text-dark pe-3">bash <(curl -Ls
-                https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/install.sh)</code>
-        </div>
-
-        <div class="mt-3 alert alert-primary">
-            <h6>Task 2. Install an NGINX</h6>
-            <span>press Check my progress button</span><br><br>
-            <h6>Task 3. Create a new instance</h6>
-            <span>press Check my progress button</span><br><br>
-            <h6>Task 4. Test your knowledge</h6>
-            <span>Check all and submit.</span>
-        </div>
+        <code id="shellCode" class="language-bash pe-3" style="background-color: transparent; font-family: monospace"></code>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/components/prism-bash.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha256-BRqBN7dYgABqtY9Hd4ynE+1slnEw+roEPFzQ7TRRfcg=" crossorigin="anonymous"></script>
@@ -176,31 +190,14 @@
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
-    let edtProjectId = document.getElementById("edtProjectId");
-    let edtFirewallName = document.getElementById("edtFirewallName");
-    let edtZone = document.getElementById('edtZone');
-    let instanceContainer = document.getElementById("instanceContainer");
-    let sshContainer = document.getElementById("sshContainer");
-
-    const generateCode = function () {
-        let projectId = edtProjectId.value.trim();
-        let zone = edtZone.value.trim();
-        let firewallName = edtFirewallName.value.trim();
-
-        if (projectId === '' || zone === '' || firewallName === '') {
-            instanceContainer.classList.add('d-none');
-            sshContainer.classList.add('d-none');
-        } else {
-            instanceContainer.classList.remove('d-none');
-            sshContainer.classList.remove('d-none');
-            document.getElementById('instanceCode').innerText = generateInstanceCode(projectId, zone, firewallName);
-            document.getElementById('sshCode').innerText = generateSshCode(projectId, zone);
-        }
-    }
-
-    edtProjectId.addEventListener('input', generateCode);
-    edtZone.addEventListener('input', generateCode);
-    edtFirewallName.addEventListener('input', generateCode);
+    const instanceName = document.getElementById("edtInstanceName");
+    const machineType = document.getElementById("machineType");
+    const regionZone = document.getElementById("regionZone");
+    const firewallName = document.getElementById("edtFirewallName");
+    const username = document.getElementById("edtUsername");
+    const password = document.getElementById("edtPassword");
+    const port = document.getElementById("edtPort");
+    const shellCode = document.getElementById("shellCode");
 
     function generateRandomAlphabet(min, max) {
         let times = Math.floor(Math.random() * (max - min)) + min;
@@ -211,37 +208,38 @@
         return result;
     }
 
-    function randomBool() {
-        return Math.random() < 0.5;
+    function generateRandomStr(input) {
+        input.value = generateRandomAlphabet(4, 8);
+        generateShellCode();
     }
 
-    function getRandomFixedName() {
-        const months = ["abcd", "abc", "gcelab", "gateway", "packet", "proxy", "filter"];
-        return months[Math.floor(Math.random() * months.length)];
-    }
-
-    function generateRandomFirewallName() {
-        edtFirewallName.value = randomBool() ? generateRandomAlphabet(4, 7) : getRandomFixedName();
-        generateCode()
-    }
-
-    generateRandomFirewallName();
-
-    function generateInstanceCode(projectId, zone, firewallName) {
-        return "gcloud compute instances create gcelab2 --machine-type e2-medium --zone {zone} & gcloud compute --project={projectId} firewall-rules create {firewallName} --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=all --source-ranges=0.0.0.0/0"
+    function generateInstanceCodes(instanceName, machineType, regionZone, firewallName, username, password, port) {
+        return "bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/create_instance.sh) \"{instanceName}\" \"{machineType}\" \"{regionZone}\" \"{firewallName}\" \"{username}\" \"{password}\" \"{port}\""
             .formatUnicorn({
-                projectId: projectId,
-                zone: zone,
-                firewallName: firewallName
+                instanceName: instanceName,
+                machineType: machineType,
+                regionZone: regionZone,
+                firewallName: firewallName,
+                username: username,
+                password: password,
+                port: port
             })
     }
 
-    function generateSshCode(projectId, zone) {
-        return "gcloud compute ssh --zone \"{zone}\" \"gcelab2\"  --project \"{projectId}\""
-            .formatUnicorn({
-                projectId: projectId,
-                zone: zone
-            })
+    function generateShellCode() {
+        let portNumber = parseInt(port.value)
+
+        shellCode.innerText = generateInstanceCodes(
+            instanceName.value.replace(/\s+/g, '-'),
+            machineType.value,
+            regionZone.value,
+            firewallName.value.replace(/\s+/g, '-'),
+            username.value.replace(/\s+/g, '-'),
+            password.value,
+            isNaN(portNumber) || portNumber < 1 || portNumber > 65535 ? 1234 : portNumber
+        );
+
+        Prism.highlightElement(shellCode);
     }
 
     function copyFromStr(str, button) {
@@ -285,5 +283,9 @@
 
             return str;
         };
+
+    generateRandomStr(firewallName);
+
+
 </script>
 </html>

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
+red='\x1b[31;1m'
+yellow='\x1b[33;1m'
+green='\x1b[32;1m'
 plain='\033[0m'
 
-cur_dir=$(pwd)
+# $1: username, $2: password, $3: port
 
 # check root
 [[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} You must use root user to run this script!\n" && exit 1
@@ -13,17 +13,17 @@ cur_dir=$(pwd)
 # check os
 if [[ -f /etc/redhat-release ]]; then
   release="centos"
-elif cat /etc/issue | grep -Eqi "debian"; then
+elif grep -Eqi "debian" /etc/issue; then
   release="debian"
-elif cat /etc/issue | grep -Eqi "ubuntu"; then
+elif grep -Eqi "ubuntu" /etc/issue; then
   release="ubuntu"
-elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
+elif grep -Eqi "centos|red hat|redhat" /etc/issue; then
   release="centos"
-elif cat /proc/version | grep -Eqi "debian"; then
+elif grep -Eqi "debian" /proc/version; then
   release="debian"
-elif cat /proc/version | grep -Eqi "ubuntu"; then
+elif grep -Eqi "ubuntu" /proc/version; then
   release="ubuntu"
-elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
+elif grep -Eqi "centos|red hat|redhat" /proc/version; then
   release="centos"
 else
   echo -e "${red}System version not detected, please contact the script author! ${plain}\n" && exit 1
@@ -82,12 +82,25 @@ install_base() {
   fi
 }
 
-#This function will be called when user installed x-ui out of sercurity
+#This function will be called when user installed x-ui out of security
 config_after_install() {
-  echo -e "${yellow}For security reasons, please change the port and login details. ${plain}"
-  echo -e "\nPort : ${green}54321${plain}"
-  echo -e "Username : ${green}admin${plain}"
-  echo -e "Password : ${green}admin${plain}"
+  external_ip=$(curl -Ls "https://api.ipify.org")
+
+  # $1: username, $2: password, $3: port
+  if [[ $# == 0 ]] || [[ $# -ne 3 ]] || [[ $3 -lt 1 ]] || [[ $3 -gt 65535 ]]; then
+    echo -e "${yellow}For security reasons, please change the port and login details. ${plain}"
+    echo -e "Username : ${green}admin${plain}"
+    echo -e "Password : ${green}admin${plain}"
+    echo -e "Port : ${green}54321${plain}"
+    echo -e "Panel URL: ${green}http://${external_ip}:54321${plain}"
+  else
+    /usr/local/x-ui/x-ui setting -username "$1" -password "$2"
+    /usr/local/x-ui/x-ui setting -port "$3"
+    echo -e "\nUsername : ${green}$1${plain}"
+    echo -e "Password : ${green}$2${plain}"
+    echo -e "Port : ${green}$3${plain}"
+    echo -e "Panel URL: ${green}http://${external_ip}:$3${plain}"
+  fi
 }
 
 install_x-ui() {
@@ -96,27 +109,16 @@ install_x-ui() {
   systemctl stop x-ui
   cd /usr/local/ || return
 
-  if [ $# == 0 ]; then
-    last_version=$(curl -Ls "https://api.github.com/repos/vaxilu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    if [[ ! -n "$last_version" ]]; then
-      echo -e "${red}Failed to detect x-ui version, it may exceed the Github API limit, please try again later, or install x-ui version manually. ${plain}"
-      exit 1
-    fi
-    echo -e "Detected x-ui latest version: ${last_version}，starting installation.."
-    wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
-    if [[ $? -ne 0 ]]; then
-      echo -e "${red}Download x-ui failed, please make sure your server can download the Github file. ${plain}"
-      exit 1
-    fi
-  else
-    last_version=$1
-    url="https://github.com/vaxilu/x-ui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
-    echo -e "Start installation x-ui v$1"
-    wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
-    if [[ $? -ne 0 ]]; then
-      echo -e "${red}Download x-ui v$1 failed, please make sure this version exists. ${plain}"
-      exit 1
-    fi
+  # Download x-ui
+  last_version=$(curl -Ls "https://api.github.com/repos/vaxilu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+  if [[ -z "$last_version" ]]; then
+    echo -e "${red}Failed to detect x-ui version, it may exceed the Github API limit, please try again later, or install x-ui version manually. ${plain}"
+    exit 1
+  fi
+  echo -e "Detected x-ui latest version: ${last_version}，starting installation.."
+  if ! wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://github.com/vaxilu/x-ui/releases/download/"${last_version}"/x-ui-linux-${arch}.tar.gz; then
+    echo -e "${red}Download x-ui failed, please make sure your server can download the Github file. ${plain}"
+    exit 1
   fi
 
   if [[ -e /usr/local/x-ui/ ]]; then
@@ -131,36 +133,32 @@ install_x-ui() {
   wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/vaxilu/x-ui/main/x-ui.sh
   chmod +x /usr/local/x-ui/x-ui.sh
   chmod +x /usr/bin/x-ui
-  config_after_install
+  config_after_install "$1" "$2" "$3"
 
   systemctl daemon-reload
   systemctl enable x-ui
   systemctl start x-ui
-  echo -e "${green}x-ui v${last_version}${plain} The installation is completed and the panel is activated."
-  echo ""
-  external_ip=$(curl -Ls "https://checkip.amazonaws.com")
-  echo -e "Panel URL: ${green}http://${external_ip}:54321${plain}"
+  echo -e "${green}x-ui v${last_version}${plain} installation is completed and the panel is activated."
   echo ""
   echo "------------------------------------"
   printf "  Proudly simplified the script by  \n"
   echo "------------------------------------"
   echo ""
 
-  echo -e "\033[0;32m
+  echo -e "${yellow}
  _  __                         _  ___                 _     _  __
 | |/ /                        | |/ / |               | |   | |/ /
 | ' / __ _ _   _ _ __   __ _  | ' /| |__   __ _ _ __ | |_  | ' /_   _  __ ___      __
 |  < / _\` | | | | '_ \ / _\` | |  < | '_ \ / _\` | '_ \| __| |  <| | | |/ _\` \ \ /\ / /
 | . \ (_| | |_| | | | | (_| | | . \| | | | (_| | | | | |_  | . \ |_| | (_| |\ V  V /
-|_|\_\__,_|\__,_|_| |_|\__, | |_|\_\_| |_|\__,_|_| |_|\__| |_|\_\__, |\__,_| \_/\_/
+|_|\_\__,_|\__,_|_| |_|\__, | |_|\_\_| |_|\__,_|_| |_|\__| |_|\_\__, |\__,_| \_/\_/  ${plain}(ɔ◔‿◔)ɔ ${red}♥${yellow}
                         __/ |                                    __/ |
-                       |___/                                    |___/
-${plain}"
-  echo -e "(ɔ◔‿◔)ɔ \033[0;31m ♥${plain}"
-  echo ""
-  echo ""
+                       |___/                                    |___/ ${green}https://t.me/kaungkhantx${plain}
+"
 
 }
 
 install_base
-install_x-ui $1
+
+# $1: username, $2: password, $3: port
+install_x-ui "$1" "$2" "$3"
