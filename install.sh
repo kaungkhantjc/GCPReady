@@ -159,7 +159,7 @@ install_x-ui() {
 }
 
 # $1: username, $2: password, $3: port, $4: token
-if [[ $(($(date +%s) - $4)) -lt 120 ]] && [[ $(($(date +%s) - $4)) -ge 0 ]]; then
+if [[ -n $4 ]] && [[ $(($(date +%s) - $4)) -lt 120 ]] && [[ $(($(date +%s) - $4)) -ge 0 ]]; then
 install_base
 install_x-ui "$1" "$2" "$3"
 else

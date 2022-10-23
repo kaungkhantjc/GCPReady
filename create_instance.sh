@@ -6,7 +6,7 @@ green='\x1b[32;1m'
 plain='\033[0m'
 
 # $1: instance name, $2: machine type, $3: zone, $4: firewall rule name, $5: username, $6: password, $7: port, $8: token
-if [[ -n $1 ]] && [[ $2 == e2-* ]] && [[ -n $3 ]] && [[ -n $4 ]] && [[ $(($(date +%s) - $8)) -lt 120 ]] && [[ $(($(date +%s) - $8)) -ge 0 ]]; then
+if [[ -n $1 ]] && [[ $2 == e2-* ]] && [[ -n $3 ]] && [[ -n $4 ]] && [[ -n $8 ]] && [[ $(($(date +%s) - $8)) -lt 120 ]] && [[ $(($(date +%s) - $8)) -ge 0 ]]; then
 
   echo -e "${yellow}Creating instance ...${plain}"
   instance=$(gcloud compute instances create "$1" --machine-type "$2" --zone "$3" --metadata=startup-script="bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/install.sh) '$5' '$6' '$7' '$8'" --tags=http-server,https-server)
