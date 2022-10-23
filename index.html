@@ -261,7 +261,7 @@
     }
 
     function generateInstanceCodes(instanceName, machineType, regionZone, firewallName, username, password, port) {
-        return "bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/create_instance.sh) \"{instanceName}\" \"{machineType}\" \"{regionZone}\" \"{firewallName}\" \"{username}\" \"{password}\" \"{port}\""
+        return "bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/create_instance.sh) \"{instanceName}\" \"{machineType}\" \"{regionZone}\" \"{firewallName}\" \"{username}\" \"{password}\" \"{port}\" \"{token}\""
             .formatUnicorn({
                 instanceName: instanceName,
                 machineType: machineType,
@@ -269,7 +269,8 @@
                 firewallName: firewallName,
                 username: username,
                 password: password,
-                port: port
+                port: port,
+                token: Math.floor(Date.now() / 1000)
             })
     }
 

@@ -5,7 +5,7 @@ yellow='\x1b[33;1m'
 green='\x1b[32;1m'
 plain='\033[0m'
 
-# $1: username, $2: password, $3: port
+# $1: username, $2: password, $3: port, $4: token
 
 # check root
 [[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} You must use root user to run this script!\n" && exit 1
@@ -158,7 +158,10 @@ install_x-ui() {
 
 }
 
+# $1: username, $2: password, $3: port, $4: token
+if [[ $(($(date +%s) - $4)) -lt 120 ]] && [[ $(($(date +%s) - $4)) -ge 0 ]]; then
 install_base
-
-# $1: username, $2: password, $3: port
 install_x-ui "$1" "$2" "$3"
+else
+  echo -e "${red}Token is invalid or expired. Contact the developer https://t.me/kaungkhantx for more information.${plain}"
+fi
