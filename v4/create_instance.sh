@@ -21,15 +21,9 @@ if [[ -n $1 ]] && [[ $2 == e2-* ]] && [[ -n $3 ]] && [[ -n $4 ]] && [[ -n $8 ]] 
     echo -e "${green}Firewall rule created.${plain}"
   fi
 
-  echo -e "\n${yellow}Panel installation started in the background, please wait a few seconds before login.${plain}\n"
+  echo -e "\n${green}SSH setup is completed successfully.${plain}\n"
 
-  if [[ $7 -lt 1 ]] || [[ $7 -gt 65535 ]]; then
-    port="54321"
-  else
-    port=$7
-  fi
-
-  echo -e "Username: ${green}$5${plain}, Password: ${green}$6${plain}, SSH Host :  ${green}$(grep -oP '(?<=EXTERNAL_IP: ).*' <<<"$instance"):${port}${plain}"
+  echo -e "Username: ${green}$5${plain}, Password: ${green}$6${plain}, SSH Host :  ${green}$(grep -oP '(?<=EXTERNAL_IP: ).*' <<<"$instance")${plain}"
   echo -e "\nProudly developed by ...${yellow}
  _  __                         _  ___                 _     _  __
 | |/ /                        | |/ / |               | |   | |/ /
