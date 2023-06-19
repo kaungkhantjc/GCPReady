@@ -1,8 +1,8 @@
-# GCPReady
+# GCP Ready
 
-GCP script generator<br>
+One click way to set up GCP VPN<br>
 https://kaungkhantjc.github.io/GCPReady
 
-Enter project ID & project number. Then press `Generate` button. Voila!
+Just copy the script and run. 🥳
 
-![Screenshot 1](https://github.com/kaungkhantjc/GCPReady/blob/main/screenshot_1.png?raw=true)
+![Screenshot 1](https://github.com/kaungkhantjc/GCPReady/blob/main/screenshot_v4.png?raw=true)
