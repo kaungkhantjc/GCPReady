@@ -1,0 +1,339 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>GCP Ready V3</title>
+        <link rel="shortcut icon" type="image/jpg" href="../assets/favicon.png"/>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+              integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/themes/prism.min.css"
+              integrity="sha256-ko4j5rn874LF8dHwW29/xabhh8YBleWfvxb8nQce4Fc=" crossorigin="anonymous">
+
+        <style>
+            code {
+                font-family: monospace;
+            }
+        </style>
+    </head>
+
+    <body class="user-select-none">
+
+    <div id="pw" class="modal fade show" tabindex="-1" role="dialog" style="display: block;" aria-modal="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4">Password required</h5>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                        <div class="input-group">
+                            <input autofocus id="inputPw" type="password" class="form-control" placeholder="password"
+                                   aria-label="Password" aria-describedby="btn">
+                            <button onclick="_0x41f9db()" class="btn btn-primary" type="button" id="btn">Enter
+                            </button>
+                        </div>
+                        <div class="invalid-feedback" id="invalid">Wrong password</div>
+                        <div class="alert alert-info mt-3">
+                            Since this project is for educational purpose, a simple password layer is added to prevent
+                            abuse. <a style="white-space: nowrap" target="_blank" href="https://t.me/kaungkhantx">Contact
+                            developer</a> for more information.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const _0x246d17 = _0x5030;(function(_0x2b8b85, _0xe873e9){const _0x51c1ea = _0x5030, _0x5761a2 = _0x2b8b85();while(!![]){try{const _0x1b87d8 = parseInt(_0x51c1ea(0x178)) + -parseInt(_0x51c1ea(0x16f)) / 0x2 + parseInt(_0x51c1ea(0x16d)) / 0x3 * (-parseInt(_0x51c1ea(0x16b)) / 0x4) + -parseInt(_0x51c1ea(0x170)) / 0x5 * (parseInt(_0x51c1ea(0x16c)) / 0x6) + parseInt(_0x51c1ea(0x179)) / 0x7 + parseInt(_0x51c1ea(0x177)) / 0x8 * (parseInt(_0x51c1ea(0x17d)) / 0x9) + parseInt(_0x51c1ea(0x175)) / 0xa;if(_0x1b87d8===_0xe873e9)break;else _0x5761a2['push'](_0x5761a2['shift']());}catch(_0x4f1e45){_0x5761a2['push'](_0x5761a2['shift']());}}}(_0x15f9,0xa1d2a),document[_0x246d17(0x17f)](_0x246d17(0x176))[_0x246d17(0x17a)](_0x246d17(0x173),function(_0x4e412e){var _0x511421=_0x246d17;if(_0x4e412e[_0x511421(0x174)]===_0x511421(0x17c))_0x41f9db();}));function _0x15f9(){var _0x14ca0f=['827932MBXSqk','addEventListener','remove','Enter','9335349pBxrjK','display','getElementById','48uQpqZW','2849694tHYAtC','36174EUtElz','block','2598848bTvKeN','5bcndrV','S2F1bmcj','value','keydown','key','12413290LmGAVN','inputPw','8KkOszZ','185029gCSsZO'];_0x15f9=function(){return _0x14ca0f;};return _0x15f9();}function _0x5030(_0x947533, _0x450449){var _0x15f9bb=_0x15f9();return _0x5030=function(_0x50306d, _0x30d131){_0x50306d=_0x50306d-0x16b;var _0x1af35b=_0x15f9bb[_0x50306d];return _0x1af35b;},_0x5030(_0x947533,_0x450449);}function _0x41f9db(){const _0x277332=_0x246d17;document[_0x277332(0x17f)]('inputPw')[_0x277332(0x172)]===atob(_0x277332(0x171))?document[_0x277332(0x17f)]('pw')[_0x277332(0x17b)]():document[_0x277332(0x17f)]('invalid')['style'][_0x277332(0x17e)]=_0x277332(0x16e);}
+    </script>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <!--suppress CheckImageSize -->
+                <img src="../assets/favicon.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                <span class="ps-3 fw-semibold">GCP Ready V3</span>
+                <a target="_blank" class="float-end btn btn-outline-primary" href="https://t.me/kaungkhantx">Contact
+                    Developer</a>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-lg-4 p-sm-4 p-md-4 p-4">
+
+        <div class="d-flex align-content-end flex-wrap gap-3">
+            <div class="text-nowrap">
+                <a class="btn btn-primary" href="../v1/index.html">V1</a>
+            </div>
+            <div class="text-nowrap">
+                <a class="btn btn-primary" href="../v2/index.html">V2</a>
+            </div>
+
+            <div class="text-nowrap">
+                <a target="_blank" class="btn btn-primary" href="https://www.cloudskillsboost.google/users/sign_in">Sign
+                    in</a>
+            </div>
+
+            <div class="btn-group dropdown-menu-lg-end">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="labs" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Labs
+                </button>
+
+                <ol class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><small class="dropdown-item-text">6hr labs</small></li>
+                    <li><a target="_blank" class="dropdown-item"
+                           href="https://www.cloudskillsboost.google/focuses/21010?parent=catalog">
+                        1. Adding flows to scale your virtual agent
+                    </a></li>
+                    <li><a target="_blank" class="dropdown-item"
+                           href="https://www.cloudskillsboost.google/focuses/21008?parent=catalog">
+                        2. Using Cloud Functions in DF CX
+                    </a></li>
+                    <li><a target="_blank" class="dropdown-item"
+                           href="https://www.cloudskillsboost.google/focuses/21012?parent=catalog">
+                        3. Creating a basic chat virtual agent with DF CX
+                    </a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a target="_blank" class="dropdown-item"
+                           href="https://www.cloudskillsboost.google/focuses/20774?parent=catalog">
+                        4. Kubernetes Basics v1.6 (4:30hr)
+                    </a></li>
+                </ol>
+
+            </div>
+        </div>
+
+        <div oninput="generateShellCode()" class="row g-3 mt-3">
+
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <label for="edtInstanceName" class="form-label">Instance name</label>
+                <div class="input-group">
+                    <input spellcheck="false" value="instance-1" type="text" class="form-control" id="edtInstanceName"
+                           placeholder="instance-1">
+                    <div class="input-group-append">
+                        <span style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                              onclick="generateRandomStr(document.getElementById('edtInstanceName'))"
+                              class="input-group-text btn btn-primary"
+                        ><i class="bi bi-shuffle"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <label for="edtFirewallName" class="form-label">Firewall name</label>
+                <div class="input-group">
+                    <input spellcheck="false" value="abc" type="text" class="form-control" id="edtFirewallName"
+                           placeholder="abc">
+                    <div class="input-group-append">
+                        <span style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+                              onclick="generateRandomStr(document.getElementById('edtFirewallName'))"
+                              class="input-group-text btn btn-primary"
+                        ><i class="bi bi-shuffle"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+                <label for="edtUsername" class="form-label">Username</label>
+                <input spellcheck="false" type="text" class="form-control" id="edtUsername"
+                       placeholder="admin" value="admin">
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+                <label for="edtPassword" class="form-label">Password</label>
+                <input spellcheck="false" type="text" class="form-control" id="edtPassword"
+                       placeholder="admin" value="admin">
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+                <label for="edtPort" class="form-label">Port</label>
+                <input spellcheck="false" min="1" max="65535" type="number" class="form-control" id="edtPort"
+                       placeholder="1-65535" value="1234">
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <label for="machineType" class="form-label">Machine type</label>
+                <select id="machineType" class="form-select" aria-label="Machine type">
+                    <optgroup label="Shared-core">
+                        <option selected value="e2-medium">e2-medium (2 vCPU, 4 GB Memory)</option>
+                        <option value="e2-micro">e2-micro (2 vCPU, 1 GB Memory)</option>
+                        <option value="e2-small">e2-small (2 vCPU, 2 GB Memory)</option>
+                    </optgroup>
+                    <optgroup label="Standard">
+                        <option value="e2-standard-2">e2-standard-2 (2 vCPU, 8 GB Memory)</option>
+                        <option value="e2-standard-4">e2-standard-4 (4 vCPU, 16 GB Memory)</option>
+                        <option value="e2-standard-8">e2-standard-8 (8 vCPU, 32 GB Memory)</option>
+                        <option value="e2-standard-16">e2-standard-16 (16 vCPU, 64 GB Memory)</option>
+                        <option value="e2-standard-32">e2-standard-32 (32 vCPU, 128 GB Memory)</option>
+                    </optgroup>
+                    <optgroup label="High memory">
+                        <option value="e2-highmem-2">e2-highmem-2 (2 vCPU, 16 GB Memory)</option>
+                        <option value="e2-highmem-4">e2-highmem-4 (4 vCPU, 32 GB Memory)</option>
+                        <option value="e2-highmem-8">e2-highmem-8 (8 vCPU, 64 GB Memory)</option>
+                        <option value="e2-highmem-16">e2-highmem-16 (16 vCPU, 128 GB Memory)</option>
+                    </optgroup>
+                    <optgroup label="High CPU">
+                        <option value="e2-highcpu-2">e2-highcpu-2 (2 vCPU, 2 GB Memory)</option>
+                        <option value="e2-highcpu-4">e2-highcpu-4 (4 vCPU, 4 GB Memory)</option>
+                        <option value="e2-highcpu-8">e2-highcpu-8 (8 vCPU, 8 GB Memory)</option>
+                        <option value="e2-highcpu-16">e2-highcpu-16 (16 vCPU, 16 GB Memory)</option>
+                        <option value="e2-highcpu-32">e2-highcpu-32 (32 vCPU, 32 GB Memory)</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                <label for="regionZone" class="form-label">Region zone</label>
+                <select id="regionZone" class="form-select" aria-label="Region zone">
+                    <option selected value="asia-east1-b">Taiwan (asia-east1-b)</option>
+                    <option value="asia-east1-a">Taiwan (asia-east1-a)</option>
+                    <option value="asia-east1-c">Taiwan (asia-east1-c)</option>
+                    <option value="asia-southeast1-b">Singapore (asia-southeast1-b)</option>
+                    <option value="asia-southeast1-a">Singapore (asia-southeast1-a)</option>
+                    <option value="asia-southeast1-c">Singapore (asia-southeast1-c)</option>
+                    <option value="us-central1-c">US Central (us-central1-c)</option>
+                    <option value="us-central1-a">US Central (us-central1-a)</option>
+                    <option value="us-central1-f">US Central (us-central1-f)</option>
+                    <option value="us-central1-b">US Central (us-central1-b)</option>
+                    <option value="us-west1-b">Oregon (us-west1-b)</option>
+                    <option value="us-west1-c">Oregon (us-west1-c)</option>
+                    <option value="us-west1-a">Oregon (us-west1-a)</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="alert border clearfix mt-3">
+            <button onclick="copyFromCode(this)"
+                    class="btn btn-outline-primary float-end ms-3"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
+                <i class="bi bi-clipboard"></i>
+            </button>
+            <code id="shellCode" class="language-bash pe-3"
+                  style="background-color: transparent; font-family: monospace; word-wrap: break-word"></code>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.29.0/components/prism-bash.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha256-BRqBN7dYgABqtY9Hd4ynE+1slnEw+roEPFzQ7TRRfcg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+            integrity="sha256-DOneOY3n5+xj6Da3AJBkPHxaPynqSlGaZ9790gbBOsE=" crossorigin="anonymous"></script>
+    </body>
+
+    <script type="text/javascript">
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        const instanceName = document.getElementById("edtInstanceName");
+        const machineType = document.getElementById("machineType");
+        const regionZone = document.getElementById("regionZone");
+        const firewallName = document.getElementById("edtFirewallName");
+        const username = document.getElementById("edtUsername");
+        const password = document.getElementById("edtPassword");
+        const port = document.getElementById("edtPort");
+        const shellCode = document.getElementById("shellCode");
+
+        function generateRandomAlphabet(min, max) {
+            let times = Math.floor(Math.random() * (max - min)) + min;
+            let result = "";
+            for (let i = 0; i < times; i++) {
+                result += String.fromCharCode(97 + Math.floor(Math.random() * 26))
+            }
+            return result;
+        }
+
+        function generateRandomStr(input) {
+            input.value = generateRandomAlphabet(4, 8);
+            generateShellCode();
+        }
+
+        function generateInstanceCodes(instanceName, machineType, regionZone, firewallName, username, password, port) {
+            return "bash <(curl -Ls https://raw.githubusercontent.com/kaungkhantjc/GCPReady/main/create_instance.sh) \"{instanceName}\" \"{machineType}\" \"{regionZone}\" \"{firewallName}\" \"{username}\" \"{password}\" \"{port}\" \"{token}\""
+                .formatUnicorn({
+                    instanceName: instanceName,
+                    machineType: machineType,
+                    regionZone: regionZone,
+                    firewallName: firewallName,
+                    username: username,
+                    password: password,
+                    port: port,
+                    token: Math.floor(Date.now() / 1000)
+                })
+        }
+
+        function generateShellCode() {
+            let portNumber = parseInt(port.value)
+
+            shellCode.innerText = generateInstanceCodes(
+                instanceName.value.replace(/\s+/g, '-'),
+                machineType.value,
+                regionZone.value,
+                firewallName.value.replace(/\s+/g, '-'),
+                username.value.replace(/\s+/g, '-'),
+                password.value,
+                isNaN(portNumber) || portNumber < 1 || portNumber > 65535 ? 1234 : portNumber
+            );
+
+            Prism.highlightElement(shellCode);
+        }
+
+        function copyFromStr(str, button) {
+            navigator.clipboard.writeText(str.trim())
+
+            let tooltip = bootstrap.Tooltip.getInstance(button);
+
+            button.title = "Copied";
+            tooltip.dispose();
+            tooltip = new bootstrap.Tooltip(button);
+            tooltip.show()
+
+            setTimeout(function () {
+                button.title = "Copy";
+                tooltip.dispose();
+                tooltip = new bootstrap.Tooltip(button);
+                tooltip.show()
+            }, 2000)
+
+        }
+
+        function copyFromCode(button) {
+            copyFromStr(button.parentElement.querySelector("code").innerText, button);
+        }
+
+        String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
+            function () {
+                "use strict";
+                let str = this.toString();
+                if (arguments.length) {
+                    const t = typeof arguments[0];
+                    let key;
+                    const args = ("string" === t || "number" === t) ?
+                        Array.prototype.slice.call(arguments)
+                        : arguments[0];
+
+                    for (key in args) {
+                        str = str.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
+                    }
+                }
+
+                return str;
+            };
+
+        generateRandomStr(firewallName);
+
+
+    </script>
+    </html>
